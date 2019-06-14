@@ -1,0 +1,35 @@
+[ENABLE]
+alloc(Hook,128)
+alloc(Timer,4)
+label(SpeedUp)
+label(Return)
+define(Delay, #100)
+
+Timer:
+dd 0
+
+Hook:
+inc [Timer]
+cmp [Timer],Delay
+je SpeedUp
+divsd xmm2,[03175348]
+jmp Return
+
+SpeedUp:
+mov [Timer],0
+mulsd xmm2,[03175348]
+jmp Return
+
+00CBA567:
+jmp Hook
+nop
+nop
+nop
+Return:
+
+[DISABLE]
+00CD49B7: // F2 ? ? ? ? ? ? ? 66 ? ? ? F2 ? ? ? ? ? ? ? 9F [First]
+divsd xmm2,[03175348]
+
+dealloc(Hook)
+dealloc(Timer)
