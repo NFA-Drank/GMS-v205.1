@@ -1,0 +1,9 @@
+[ENABLE]
+//CFlameBallAttack::UpdateFlameBallAttack
+015CC070:
+ret 10
+
+[DISABLE]
+015CC070: // 3D 5A BB C4 04 75 ? [Function Start]
+push ebp
+mov ebp,esp
